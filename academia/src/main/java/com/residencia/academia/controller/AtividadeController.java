@@ -39,7 +39,7 @@ public class AtividadeController {
 	public ResponseEntity<AtividadeDTO> findAtividadeDTOById(@PathVariable Integer id) {
 		AtividadeDTO atividadeDTO = atividadeService.findAtividadeDTOById(id);
 		if (null == atividadeDTO)
-			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+			throw new NoSuchElementFoundException("Não foi encontrado Instrutor com o id: " + id);
 		else
 			return new ResponseEntity<>(atividadeDTO, HttpStatus.OK);
 	}

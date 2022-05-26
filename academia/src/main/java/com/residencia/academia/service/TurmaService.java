@@ -39,8 +39,9 @@ public class TurmaService {
 		TurmaDTO turmaDTO = new TurmaDTO();
 		if (null != turma) {
 			turmaDTO = converterEntidadeParaDTO(turma);
+			return turmaDTO;
 		}
-		return turmaDTO;
+		return null;
 	}
 	
 	public Turma saveTurma(Turma turma) {
@@ -73,7 +74,10 @@ public class TurmaService {
 		turmaDTO.setIdTurma(turma.getIdTurma());
 		InstrutorDTO instrutorDTO = instrutorService.findInstrutorDTOById(turma.getInstrutor().getIdInstrutor());
         turmaDTO.setInstrutor(instrutorDTO);
-        AtividadeDTO atividadeDTO = atividadeService.findAtividadeDTOById(turma.getAtividade().getIdAtividade());
+        AtividadeDTO atividadeDTO = new AtividadeDTO();
+        if(turma.getAtividade() != null) {
+        	atividadeDTO = atividadeService.findAtividadeDTOById(turma.getAtividade().getIdAtividade());
+        }
         turmaDTO.setAtividade(atividadeDTO);
 		return turmaDTO;
 	}

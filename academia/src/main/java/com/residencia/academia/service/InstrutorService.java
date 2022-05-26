@@ -2,6 +2,7 @@ package com.residencia.academia.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,8 +23,8 @@ public class InstrutorService {
 	}
 
 	public Instrutor findInstrutorById(Integer id) {
+		return instrutorRepository.findById(id).orElse(null);
 		
-		return instrutorRepository.findById(id).get();
 	}
 
 	public InstrutorDTO findInstrutorDTOById(Integer id) {
@@ -33,8 +34,9 @@ public class InstrutorService {
 		InstrutorDTO instrutorDTO = new InstrutorDTO();
 		if (null != instrutor) {
 			instrutorDTO = converterEntidadeParaDTO(instrutor);
+			return instrutorDTO;
 		}
-		return instrutorDTO;
+		return null;
 	}
 
 	public Instrutor saveInstrutor(Instrutor instrutor) {

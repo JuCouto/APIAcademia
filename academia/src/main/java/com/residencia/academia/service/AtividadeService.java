@@ -26,6 +26,7 @@ public class AtividadeService {
 		return atividadeRepository.findById(id).isPresent()?
 		atividadeRepository.findById(id).get(): null;
 	}
+	
 	public AtividadeDTO findAtividadeDTOById(Integer id) {
 		Atividade atividade = atividadeRepository.findById(id).isPresent() ? atividadeRepository.findById(id).get()
 				: null;

@@ -47,7 +47,7 @@ public class TurmaController {
 	@GetMapping("/dto/{id}")
 	public ResponseEntity<TurmaDTO> findTurmaDTOById(@PathVariable Integer id) {
 		TurmaDTO turmaDTO = turmaService.findTurmaDTOById(id);
-		if (null != turmaDTO)
+		if (null == turmaDTO)
 			throw new NoSuchElementFoundException("Não foi encontrada Turma com o id: " + id);
 		else
 			return new ResponseEntity<>(turmaDTO, HttpStatus.OK);

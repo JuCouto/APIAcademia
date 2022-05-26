@@ -38,7 +38,7 @@ public class InstrutorController {
 	@GetMapping("/dto/{id}")
 	public ResponseEntity<InstrutorDTO> findInstrutorDTOById(@PathVariable Integer id) {
 		InstrutorDTO instrutorDTO = instrutorService.findInstrutorDTOById(id);
-		if (null != instrutorDTO)
+		if (null == instrutorDTO)
 			throw new NoSuchElementFoundException("Não foi encontrado Instrutor com o id: " + id);
 		else
 			return new ResponseEntity<>(instrutorDTO, HttpStatus.OK);
@@ -49,7 +49,7 @@ public class InstrutorController {
 		/* return new ResponseEntity<>(instrutorService.findInstrutorById(id), HttpStatus.OK);*/
 		Instrutor instrutor = instrutorService.findInstrutorById(id);
 		if (null == instrutor)
-			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+			throw new NoSuchElementFoundException("Não foi encontrado Instrutor com o id: " + id);
 		else
 			return new ResponseEntity<>(instrutor, HttpStatus.OK);
 	}
